@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
@@ -23,10 +24,10 @@ public class LinkController {
         return "link";
     }
 
-    @GetMapping("/url")
-    public String url() {
-        return "/link/basicUrl";
-    }
+//    @GetMapping("/url")
+//    public String url() {
+//        return "/link/basicUrl";
+//    }
 
     // /getInfo(name=${name},age=${age})
 

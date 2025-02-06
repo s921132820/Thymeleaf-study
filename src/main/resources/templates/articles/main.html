@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>url</td>
+        <td>method</td>
+        <td>출력내용</td>
+        <td>html page</td>
+    </tr>
+    <tr>
+        <td>/article/list</td>
+        <td>GET</td>
+        <td>신체 게시글 읽기 성공</td>
+        <th><a th:href="@{list}">list_all.html</a></th>
+    </tr>
+    <tr>
+        <td>/article/{id}</td>
+        <td>GET</td>
+        <td>7번 게시글 읽기 성공</td>
+        <th><a th:href="@{{id}(id=${7})}">list_one.html</a></th>
+    </tr>
+    //"@{/getInfo(name=${name},age=${age})}"
+    <tr>
+        <td>/articles/create?name=tom&weight=80&height=180</td>
+        <td>GET</td>
+        <td>톰의 키는 180, 몸무게는 80 입니다</td>
+        <th>new.html</th>
+    </tr>
+    <tr>
+        <td>/articles/update</td>
+        <td>POST</td>
+        <td>업데이트 성공 화면 출력</td>
+        <th>update_ok.html</th>
+    </tr>
+    <tr>
+        <td>/articles/{id}/update</td>
+        <td>GET</td>
+        <td>7번 게시글 수정 폼 로딩 완료</td>
+        <th>update.html</th>
+    </tr>
+    <tr>
+        <td>/articles/{id}/delete</td>
+        <td>GET</td>
+        <td>3번 글 삭제 완료</td>
+        <th>delete_ok.html</th>
+    </tr>
+    <tr>
+        <td>/articles/{id}/articleComment</td>
+        <td>POST</td>
+        <td>15번 게시글의 3번째 답글 삭제 완료</td>
+        <th>delete_ok.html</th>
+    </tr>
+    <tr>
+        <td>/articles/{id}/articleComments/{articlecomment-id}/delete</td>
+        <td>POST</td>
+        <td>11번 게시글의 모든 댓글보기 성공</td>
+        <th>comment_view.html</th>
+    </tr>
+</table>
+
+</body>
+</html>
