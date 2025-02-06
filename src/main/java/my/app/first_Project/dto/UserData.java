@@ -1,4 +1,4 @@
-package my.app.first_Project.controller.dto;
+package my.app.first_Project.dto;
 
 import lombok.*;
 
