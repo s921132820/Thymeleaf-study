@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/basic")
 public class ThymeleafController {
+    @GetMapping("date")
+    public String date(Model model) {
+        model.addAttribute("nowDateTime", LocalDateTime.now());
+        return "utillty/date";
+    }
     @GetMapping("text-basic")
     public String textBasic(Model model) {
         model.addAttribute("name", "안유진");
