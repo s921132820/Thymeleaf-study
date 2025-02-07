@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<table>
+<table border="1">
     <tr>
         <td>url</td>
         <td>method</td>
@@ -15,51 +15,64 @@
     <tr>
         <td>/article/list</td>
         <td>GET</td>
-        <td>신체 게시글 읽기 성공</td>
-        <th><a th:href="@{list}">list_all.html</a></th>
+        <td>전체 게시글 읽기 성공</td>
+        <td><a th:href="@{/articles/listAll}">list_all.html</a></td>
     </tr>
     <tr>
         <td>/article/{id}</td>
         <td>GET</td>
         <td>7번 게시글 읽기 성공</td>
-        <th><a th:href="@{{id}(id=${7})}">list_one.html</a></th>
+        <td th:with="value=7">
+            <a th:href="@{/articles/{id}(id=${value})}">list_one.html</a>
+        </td>
     </tr>
-    //"@{/getInfo(name=${name},age=${age})}"
-    <tr>
+    <tr th:with="name='tom', weight=80, height=180">
         <td>/articles/create?name=tom&weight=80&height=180</td>
         <td>GET</td>
         <td>톰의 키는 180, 몸무게는 80 입니다</td>
-        <th>new.html</th>
+        <td>
+            <a th:href="@{/articles/create(name=${name},weight=${weight},height=${height})}">new.html</a>
+        </td>
     </tr>
     <tr>
         <td>/articles/update</td>
         <td>POST</td>
         <td>업데이트 성공 화면 출력</td>
-        <th>update_ok.html</th>
+        <td>
+            <a th:href="@{/articles/update_ok}">update_ok.html</a>
+        </td>
     </tr>
-    <tr>
+    <tr th:with="id=5">
         <td>/articles/{id}/update</td>
         <td>GET</td>
-        <td>7번 게시글 수정 폼 로딩 완료</td>
-        <th>update.html</th>
+        <td>[[${id}]]번 게시글 수정 폼 로딩 완료</td>
+        <td>
+            <a th:href="@{/articles/{id}/update(id=${id})}">update.html</a>
+        </td>
     </tr>
-    <tr>
+    <tr th:with="deleteId=3">
         <td>/articles/{id}/delete</td>
         <td>GET</td>
-        <td>3번 글 삭제 완료</td>
-        <th>delete_ok.html</th>
+        <td>[[ ${deleteId} ]]번 글 삭제 완료</td>
+        <td>
+            <a th:href="@{/articles/{id}/delete(id=${deleteId})}">delete_ok.html</a>
+        </td>
     </tr>
-    <tr>
+    <tr th:with="articleId=11">
         <td>/articles/{id}/articleComment</td>
         <td>POST</td>
-        <td>15번 게시글의 3번째 답글 삭제 완료</td>
-        <th>delete_ok.html</th>
+        <td>[[${articleId}]]번 게시글의 모든 댓글보기 성공</td>
+        <td>
+            <a th:href="@{/articles/{id}/articleComment(id=${articleId})}">comment_view.html</a>
+        </td>
     </tr>
-    <tr>
-        <td>/articles/{id}/articleComments/{articlecomment-id}/delete</td>
+    <tr th:with="articleId=15, commentId=3">
+        <td>/articles/{id}/articleComments/{articlecommentId}/delete</td>
         <td>POST</td>
-        <td>11번 게시글의 모든 댓글보기 성공</td>
-        <th>comment_view.html</th>
+        <td>[[${articleId}]]번 게시글의 [[${commentId}]]번째 답글 삭제 완료</td>
+        <td>
+            <a th:href="@{/articles/{id}/articleComments/{articlecommentId}/delete(id=${articleId}, articlecommentId=${commentId})}">delete_ok.html</a>
+        </td>
     </tr>
 </table>
 
