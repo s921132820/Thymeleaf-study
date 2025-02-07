@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>선택한 멤버는 [[${selectUser.userName}]]</h3>
+<p>이름 :  [[${selectUser.userName}]]</p>
+<p>나이 :  [[${selectUser.userAge}]]</p>
+<p>주소 :  [[${selectUser.userAddress}]]</p>
+
+<a th:href="@{/basic/for}">돌아가기</a>
+
+</body>
+</html>

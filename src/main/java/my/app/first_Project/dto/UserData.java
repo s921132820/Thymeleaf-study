@@ -13,6 +13,14 @@ public class UserData {
     private int userAge;
     private String userAddress;
 
+    public static UserData fromParams(
+            String userName,
+            int userAge,
+            String userAddress
+    ) {
+        return new UserData(userName, userAge, userAddress);
+    }
+
 //    public UserData(String userName, int userAge) {
 //        this.userName = userName;
 //        this.userAge = userAge;
