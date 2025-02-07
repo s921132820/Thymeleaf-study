@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  .text{font-size:16px;}
+  .large{font-size:20px;}
+  .red{color:red;}
+  .blue{color:blue;}
+  .bold{font-weight:700}
+</style>
+<body>
+  <h1>속성 설정</h1>
+<input type="text" class="text" value="리사"
+       th:name="thName" th:value="jenny" name="myName" >
+<hr>
+  <span class="text" th:classappend="|red bold|">Attribute 첫번째</span> <br />
+<!--  앞에 공백-->
+  <span class="text" th:attrappend="class=' large'">Attribute 두번째</span> <br />
+<!--  뒤에 공백-->
+  <span class="text" th:attrprepend="class='large '">Attribute 세번째</span> <br />
+</body>
+</html>

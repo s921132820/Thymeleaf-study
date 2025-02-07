@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>리터럴</h1>
+  <ul>
+    <li>
+      <span th:text="장원영">김형민</span>
+<!--      리터럴은 중간 공백 존재 시 작은 따옴표로 묶어야 함-->
+      <span th:text="'Hello World'">김형민</span>
+    </li>
+    <li>
+      <span>보낸데이터 [[${data}]]</span>
+      <span th:text="|${data} 입니다|"></span>
+    </li>
+  </ul>
+
+</body>
+</html>
