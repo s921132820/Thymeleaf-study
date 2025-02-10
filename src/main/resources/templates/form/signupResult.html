@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 결과 화면</title>
+</head>
+<body th:object="${signupInfo}">
+<p>아이디 : [[ *{userId}]]</p>
+<p>패스워드 : [[ *{password} ]]</p>
+<p>성명 :  [[*{userName}]]</p>
+<p>생년월일 :  [[*{birth}]]</p>
+<p>성별 : [[*{gender}]]</p>
+<!--<p>email : [[*{email}]]</p>-->
+<!--<p>휴대폰: [[*{phone}]]</p>-->
+
+</body>
+</html>

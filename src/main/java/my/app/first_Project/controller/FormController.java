@@ -1,5 +1,6 @@
 package my.app.first_Project.controller;
 
+import my.app.first_Project.dto.Country;
 import my.app.first_Project.dto.Language;
 import my.app.first_Project.dto.UserInfo;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,11 @@ public class FormController {
         // 처음 form을 로딩할 때 바인딩 되어있는 UserInfo Dto의 껍데기를 보냄
         model.addAttribute("user", new UserInfo());
         return "/form/basicForm";
+    }
+
+    @ModelAttribute("nation")
+    private Country[] countries() {
+        return Country.values();
     }
 
     @ModelAttribute("lang")

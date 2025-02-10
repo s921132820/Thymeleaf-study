@@ -11,7 +11,7 @@
     <div class="py-4 text-center">
       <h2>Test Form</h2>
     </div>
-    <form th:action="@{/sendData}" th:method="post" th:object="${user}">
+    <form th:action="@{/sendData}" th:method="post" th:object="${user}" id="userForm">
       <div>
         <label for="nickname">Nickname</label>
         <input type="text" class="form-control" name="myName" th:field="*{nickname}">
@@ -30,7 +30,7 @@
         <div>
             <div>취미 선택(다중선택 가능)</div>
             <div th:each="h : ${hobbies}">
-                <input type="checkbox" th:field="*{hobbies}" value="${h.key}" class="form-check-input">
+                <input type="checkbox" th:field="*{hobbies}" th:value="${h.key}" class="form-check-input">
                 <label th:for="${#ids.prev('hobbies')}" th:text="${h.value}" class="form-check-label"></label>
             </div>
         </div>
@@ -43,8 +43,31 @@
                 <label th:for="${#ids.prev('language')}" th:text="${x.description}" class="form-check-label"></label>
             </div>
         </div>
-      <button class="btn btn-primary" type="submit">전송</button>
+        <hr>
+        <!--  국가 선택-->
+        <div>
+            <div>국가 선택</div>
+            <select th:field="*{country}" class="form-select">
+                <option value="">=== 국가를 선택하세요 ===</option>
+                <option th:each="c : ${nation}" th:value="${c.name()}" th:text="${c.description}"></option>
+            </select>
+        </div>
+      <button class="btn btn-primary" type="submit" onclick="check(event)">전송</button>
     </form>
   </div>
+<script>
+
+    document.querySelector("#userForm").addEventListener("submit", function(e) {
+        check(e);
+    });
+
+    function check(e) {
+        e.preventDefault();
+        let nickname =  document.querySelector("#nickname")
+        if(nickname.value.trim == "") {
+        alert("닉네임을 입력하세요")
+        }
+    }
+</script>
 </body>
 </html>
