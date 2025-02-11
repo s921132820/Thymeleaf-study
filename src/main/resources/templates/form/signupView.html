@@ -3,70 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <style>
+      .container{width:768px; border:1px solid red}
+      .left-wrap{width:20%; display:inline-block; background:red}
+
+    </style>
 </head>
-<body>
+<body class="container">
   <h1>회원가입</h1>
   <div>
     <P>기본정보(필수)</P>
     <form th:object="${signupInfo}" action="sendSignup" method="post">
-      <ul>
-        <li>
-          <label for="userId">회원아이디</label>
-          <input type="text" th:field="*{userId}">
-          <button>중복확인</button>
-          <span>회원아이디는 대문자로 일괄처리됩니다.</span>
-        </li>
-        <li>
-          <label for="password">비밀번호</label>
-          <input type="text" th:field="*{password}">
-        </li>
-        <li>
-          <label>비밀번호 확인</label>
-          <input type="text" th:field="*{password}">
-        </li>
-        <li>
-          <label>성명</label>
+      <div>
+        <div>
+          <label for="userId" class="left-wrap">회원아이디</label>
+          <div>
+            <input type="text" th:field="*{userId}">
+            <button type="button" onclick="idCheck()">중복확인</button>
+            <span>회원아이디는 대문자로 일괄처리됩니다.</span>
+          </div>
+        </div>
+        <div>
+          <label for="password" class="left-wrap">비밀번호</label>
+          <input type="password" id="password" th:field="*{password}">
+        </div>
+        <div>
+          <label class="left-wrap">비밀번호 확인</label>
+          <input type="password" id="confirmPassword" th:field="*{confirmPassword}" oninput="checkPassword()">
+          <span id="passwordMessage"></span>
+        </div>
+        <div>
+          <label class="left-wrap">성명</label>
           <input type="text" th:field="*{userName}">
-        </li>
-        <li>
-          <label>생년월일</label>
+        </div>
+        <div>
+          <label class="left-wrap">생년월일</label>
           <input type="date" th:field="*{birth}">
-        </li>
-        <li>
-          <label>성별</label>
+        </div>
+        <div>
+          <label class="left-wrap">성별</label>
           <div th:each="g : ${gender}">
             <input type="radio" th:field="*{gender}" th:value="${g.name}">
             <label th:for="${#ids.prev('gender')}" th:text="${g.description}"></label>
           </div>
-        </li>
-        <li>
-          <span>이용약관동의</span>
+        </div>
+        <div>
+          <span class="left-wrap">이용약관동의</span>
           <div>
-            <input type="checkbox">
+            <input type="checkbox" id="agreeAll" onclick="toggleCheckboxes()">
             <label>전체 동의합니다.</label> <br />
-            <input type="checkbox">
-            <label>선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</label> <br />
-            <input type="checkbox">
+            <span>선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</span> <br />
+            <input type="checkbox" class="agreeItem">
             <label>이용약관 동의(필수)</label> <br />
-            <input type="checkbox">
+            <input type="checkbox" class="agreeItem">
             <label>개인정보 수집, 이용 동의(필수)</label> <br />
-            <input type="checkbox">
+            <input type="checkbox" class="agreeItem">
             <label>개인정보 수집, 이용 동의(선택)</label> <br />
           </div>
-        </li>
-        <li>
-          <label for="email">E-Mail</label>
-          <input type="text">
+        </div>
+        <div>
+          <label  class="left-wrap" for="emailInput">E-Mail</label>
+          <input type="text" th:field="*{emailInput}">
           <select th:field="*{email}">
             <option value="">=== 이메일 선택하세요 ===</option>
             <option th:each="c : ${email}" th:value="${c.name()}" th:text="${c.description}"></option>
           </select>
-        </li>
-        <li>
-          <label for="phone">휴대폰</label>
+        </div>
+        <div>
+          <label  class="left-wrap" for="phone">휴대폰</label>
           <input type="text" th:field="*{phone}">
-        </li>
-      </ul>
+        </div>
+      </div>
       <button type="submit">확인</button>
       <button type="reset">취소</button>
     </form>
@@ -75,6 +82,34 @@
 
 
   </div>
+<script>
+  function idCheck () {
+  alert("사용 가능한 아이디입니다");
+  }
 
+// 비밀번호 체크 함수
+function checkPassword() {
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const messageSpan = document.getElementById('passwordMessage');
+
+  if (password === confirmPassword) {
+    messageSpan.textContent = "비밀번호가 일치합니다.";
+    messageSpan.style.color = "green";  // 일치하면 초록색
+  } else {
+    messageSpan.textContent = "비밀번호가 일치하지 않습니다.";
+    messageSpan.style.color = "red";  // 일치하지 않으면 빨간색
+  }
+}
+
+// 전체 동의 체크박스를 클릭하면 모든 체크박스를 선택하거나 해제하는 함수
+function toggleCheckboxes() {
+  const agreeAll = document.getElementById('agreeAll');
+  const agreeItems = document.querySelectorAll('.agreeItem');
+  agreeItems.forEach(function(checkbox) {
+    checkbox.checked = agreeAll.checked;
+  });
+}
+</script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package my.app.first_Project.dto;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 @Getter
@@ -13,3 +14,4 @@ public enum Email {
         this.description = description;
     }
 }
+
